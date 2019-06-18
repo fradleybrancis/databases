@@ -19,17 +19,22 @@ CREATE TABLE users (
 
 CREATE TABLE messages (
   /* Describe your table here.*/
-  ID INT PRIMARY KEY,
-  Message VARCHAR(255), /* NOTE: Text is highlighted blue here, but ID is not above, if any unexpected issues, check this*/
-  Username INT, 
-  Room VARCHAR(255),
-  FOREIGN KEY(Username) REFERENCES users(ID)
-  /* PROBLEM WITH FOREIGN KEY CONNECTION*/
+
+  id int NOT NULL AUTO_INCREMENT,
+  userid int NOT NULL,
+  text varchar(200)  NOT NULL,
+  roomname varchar(20),
+  PRIMARY KEY (ID)
 );
 
 /* Create other tables and define schemas for them here! */
 
 
+CREATE TABLE users (
+  id        int    NOT NULL AUTO_INCREMENT,
+  username  varchar(40)   NOT NULL,
+  PRIMARY KEY (ID)
+);
 
 
 /*  Execute this file from the command line by typing:

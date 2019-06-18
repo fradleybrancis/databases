@@ -1,11 +1,15 @@
 var mysql = require('mysql');
 
 
-// INDEX IS THE ENTRY POINT OF A MODULE, DIRECTORY... 
+var connection = mysql.createConnection({
+  user: 'root',
+  password: '',
+  database: 'chat'
+});
 
-// Create a database connection and export it from this file.
-// You will need to connect with the user "student", password: student,
-// and to the database "chat".
+connection.connect();
+
+module.exports = connection;
 
 var connection = mysql.createConnection({
   host: 'localhost',

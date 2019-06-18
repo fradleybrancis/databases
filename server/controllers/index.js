@@ -1,33 +1,37 @@
 var models = require('../models');
 
 module.exports = {
+
   messages: {
-    get: function (req, res) {}, // a function which handles a get request for all messages
-    post: function (req, res) {} // a function which handles posting a message to the database
+    get: function (req, res) {
+      models.messages.get(function(err, results) {
+        if (err) { /* do something */ }
+        res.json(results);
+      });
+    },
+    post: function (req, res) {
+      var params = [req.body.message, req.body.username, req.body.roomname];
+      models.messages.post(params, function(err, results) {
+        if (err) { /* do something */ }
+        res.sendStatus(201);
+      });
+    }
   },
 
   users: {
-    // Ditto as above
-    get: function (req, res) {},
+    get: function (req, res) {
+      models.users.get(function(err, results) {
+        if (err) { /* do something */ }
+        res.json(results);
+      });
+    },
     post: function (req, res) {
-      console.log('our request body: ', req.body);
-      // send req.body to our model
-      models.users.post(req.body);
-      // we believe this will run the models function that adds our given
-      // data in req.body to the users table
-      // there could be more steps
-
-      
-      
-      // send ______ to our model and wait for model to send something back
-      
-      
-      
-      
-      
-      res.send('hello');
-      res.end();
+      var params = [req.body.username];
+      models.users.post(params, function(err, results) {
+        if (err) { /* do something */ }
+        res.sendStatus(201);
+      });
     }
   }
-};
+  };
 
